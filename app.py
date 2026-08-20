@@ -13,15 +13,17 @@ This app predicts the probability that a new free-to-play mobile game player wil
 Enter the player's early activity profile below to get a prediction.
 """)
 
-# --- Load Model ---
+# Load the model
 @st.cache_resource
 def load_model():
-    try:
-        model = joblib.load("model/whale_prediction_model.pkl")
-        return model
-    except FileNotFoundError:
-        st.error("Model file 'final_payer_conversion_model.pkl' not found. Please ensure the model has been trained and saved.")
-        st.stop()
+    return joblib.load("models/whale_prediction_model.pkl")
+
+try:
+    model = load_model()
+except FileNotFoundError:
+    st.error("Model file not found. Please ensure 'models/whale_prediction_model.pkl' exists.")
+    st.stop()
+
 
 model = load_model()
 
