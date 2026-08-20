@@ -17,7 +17,7 @@ Enter the player's early activity profile below to get a prediction.
 @st.cache_resource
 def load_model():
     try:
-        model = joblib.load("final_payer_conversion_model.pkl")
+        model = joblib.load("model/whale_prediction_model.pkl")
         return model
     except FileNotFoundError:
         st.error("Model file 'final_payer_conversion_model.pkl' not found. Please ensure the model has been trained and saved.")
